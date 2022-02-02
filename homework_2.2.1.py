@@ -7,7 +7,7 @@ class FTeam:
         self.goals = goals
         self.missed = missed
 
-    def addresult(self, goals, missed):
+    def add_result(self, goals, missed):
         self.goals += goals
         self.missed += missed
         if self.goals > self.missed:
@@ -36,7 +36,7 @@ class FTeam:
 
 class FTeam2(FTeam):
     def __init__(self, win, lose, draw, goals, missed):
-        super().__init__(self, win, lose, draw, goals, missed)
+        super().__init__(win, lose, draw, goals, missed)
 
     def total(self):
         tot = self.win + self.lose + self.draw
