@@ -8,32 +8,39 @@ class FTeam:
         self.missed = missed
 
     def result(self, goals, missed):
-        if goals > missed:
+        if self.goals > self.missed:
             self.win += 1
-            print(f"Команда выиграла со счётом {goals}:{missed}")
+            print(f"Команда выиграла со счётом {self.goals}:{self.missed}")
             return self.win
 
-        elif goals == missed:
+        elif self.goals == self.missed:
             self.draw += 1
-            print(f"Команда сыграла вничью со счётом {goals}:{missed}")
+            print(f"Команда сыграла вничью со счётом {self.goals}:{self.missed}")
             return self.draw
 
         else:
             self.lose += 1
-            print(f"Команда проиграла со счётом {goals}:{missed}")
+            print(f"Команда проиграла со счётом {self.goals}:{self.missed}")
             return self.lose
 
-    def points(self, win, draw):
+    def points(self):
         point = self.win * 3 + self.draw
         print(f'У команды сейчас {point} очков')
 
-    def difference(self, goals, missed):
+    def difference(self):
         dif = self.goals - self.missed
         print(f'Разница забитых/пропущенных сейчас составляет - {dif}')
 
 
 class FTeam2(FTeam):
-    def total(self, win, lose, draw):
+    def __init__(self, win, lose, draw, goals, missed):
+        super().__init__(self, win, lose, draw, goals, missed)
+
+    def total(self):
         tot = self.win + self.lose + self.draw
         print(f'Общее количество матечей команды - {tot} ')
+
+
+if __name__ == '__main__':
+    ukr = FTeam(10, 20, 11, 11, 11)
 
