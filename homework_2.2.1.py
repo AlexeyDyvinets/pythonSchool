@@ -7,20 +7,22 @@ class FTeam:
         self.goals = goals
         self.missed = missed
 
-    def result(self, goals, missed):
+    def addresult(self, goals, missed):
+        self.goals += goals
+        self.missed += missed
         if self.goals > self.missed:
             self.win += 1
-            print(f"Команда выиграла со счётом {self.goals}:{self.missed}")
+            print(f"Команда выиграла со счётом {goals}:{missed}")
             return self.win
 
         elif self.goals == self.missed:
             self.draw += 1
-            print(f"Команда сыграла вничью со счётом {self.goals}:{self.missed}")
+            print(f"Команда сыграла вничью со счётом {goals}:{missed}")
             return self.draw
 
         else:
             self.lose += 1
-            print(f"Команда проиграла со счётом {self.goals}:{self.missed}")
+            print(f"Команда проиграла со счётом {goals}:{missed}")
             return self.lose
 
     def points(self):
@@ -42,5 +44,6 @@ class FTeam2(FTeam):
 
 
 if __name__ == '__main__':
-    ukr = FTeam(10, 20, 11, 11, 11)
-
+    ukr = FTeam(0, 0, 0, 0, 0)
+    ukr.addresult(5, 1)
+    print(ukr.goals, ukr.missed)
