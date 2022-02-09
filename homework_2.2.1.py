@@ -45,5 +45,5 @@ class FTeam2(FTeam):
 
 if __name__ == '__main__':
     ukr = FTeam(0, 0, 0, 0, 0)
-    ukr.addresult(5, 1)
+    ukr.add_result(5, 1)
     print(ukr.goals, ukr.missed)
