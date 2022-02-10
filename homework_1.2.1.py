@@ -17,7 +17,6 @@ def logs_handler(logs):
     log2 = {x.split('.')[0]: x.split('.')[1]for x in s2}
     set1 = set(log1.items())
     set2 = set(log2.items())
-    print(set1 ^ set2, sep='\n')
     return set1 ^ set2
 
 
@@ -25,3 +24,4 @@ if __name__ == '__main__':
     text = file_opener('hw.log')
     logs = logs_finder(text, 'eid: ')
     lgs = logs_handler(logs)
+    print(lgs)
