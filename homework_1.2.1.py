@@ -1,40 +1,27 @@
-import re
-
-# Функция открывает файл, указанный в аргументе и запускает фукцию, которая находит необходимые нам значения в логе
-# Todo 1. функция не универсальна т.е она не только читает файл а еще как то его пытветься обработать.
-#  если к примеру тебе нужно будет еще другой файл читать с другим содержимым то опять переписывать нужно
-#  + функция сма по себе ничего не возвращает
-#  2. когда операции с файлом оконечены его нужно закрыть
 def file_opener(file):
     log = open(file)
-    text = log.read()  # в данном случае тебе не нужен файл целиком, с ним сложно работать посмотри .readline()
-    logs_finder(text)
+    s_text = log.readlines()
+    return s_text
 
-# todo попробуй не использовать модул re он тут оч прям избыточен посмотри в сторону вхождения подстроки в строку
-def logs_finder(text):
-    logs_reader = re.findall(r'eid:(.*)', text)
-# Ищем 2 последних лога, и разделяем их
-    log1 = logs_reader[-1].replace(';', '\n').split()
-    log2 = logs_reader[-2].replace(';', '\n').split()
-    print(f'Предпоследние eid:{log2}\nПоследние eid:{log1}')
-    logs_handler(log1, log2)
 
-# todo в текущей реализации все по два раза по два раза получилось не используй тут модуль re оно не нужно
-#  в контексте обучения тут должны быть методы строк + медленей работатают
-def logs_handler(log1, log2):
-# Преобразуем списки в строки, для того, чтобы с помощью регулярных выражений разделить имена и значения логов, 
-# чтобы потом объеденить их в словарь    
-    log1 = ''.join(log1)
-    log2 = ''.join(log2)
-    log1_names = re.findall(r'[^.0-9]\w*[^.0-9]', log1)
-    log2_names = re.findall(r'[^.0-9]\w*[^.0-9]', log2)
-    log1_val = re.findall(r'\d+', log1)
-    log2_val = re.findall(r'\d+', log2)
-    log1 = dict(zip(log1_names, log1_val))
-    log2 = dict(zip(log2_names, log2_val))
+def logs_finder(s_text, pattern):
+    logs = [x for x in text[::-1] if pattern in x][:2]
+    return logs
 
-    print(log1, log2, sep='\n')
+def logs_handler(logs):
+    log1 = logs[0].strip()
+    s1 = log1[log1.find('eid: ') + len('eid: '):].split(';')
+    log2 = logs[1].strip()
+    s2 = log2[log2.find('eid: ') + len('eid: '):].split(';')
+    log1 = {x.split('.')[0]: x.split('.')[1]for x in s1}
+    log2 = {x.split('.')[0]: x.split('.')[1]for x in s2}
+    set1 = set(log1.items())
+    set2 = set(log2.items())
+    print(set1 ^ set2, sep='\n')
+    return set1 ^ set2
 
-# todo : if __name__ == '__main__':
-file_opener('hw.log')
 
+if __name__ == '__main__':
+    text = file_opener('hw.log')
+    logs = logs_finder(text, 'eid: ')
+    lgs = logs_handler(logs)
