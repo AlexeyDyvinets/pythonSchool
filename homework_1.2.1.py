@@ -26,6 +26,6 @@ def logs_handler(logs): # Обращай внимание на подчерки�
 
 if __name__ == '__main__':
     text = file_opener('hw.log')
-    logs = logs_finder(text, 'eid: ')
+    logs = logs_finder(text, 'eid: ') # используй полный шаблон лучше  тот что на кувики
     lgs = logs_handler(logs)
     print(lgs)
