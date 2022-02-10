@@ -1,14 +1,18 @@
 def file_opener(file):
     log = open(file)
     s_text = log.readlines()
+    # так нет метода клосе снова
     return s_text
 
 
 def logs_finder(s_text, pattern):
-    logs = [x for x in text[::-1] if pattern in x][:2]
+    # что такое s_text, оно ж должно использоваться
+    logs = [x for x in text[::-1] if pattern in x][:2] # обработай кейс если не найдено ни одно совпадение
+    # т.е если список пуст при попытке среза будет ошибка например срез можно делать только если список не пуст например
     return logs
 
-def logs_handler(logs):
+def logs_handler(logs): # Обращай внимание на подчеркивания ИДЕ
+    # там где код повторяеться 2 раза выглядит не оч, напиши цикл тогда уже
     log1 = logs[0].strip()
     s1 = log1[log1.find('eid: ') + len('eid: '):].split(';')
     log2 = logs[1].strip()
