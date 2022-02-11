@@ -10,7 +10,7 @@ def logs_finder(s_text, pattern):
     if logs:
         return logs[:2]
     else:
-        exit(1)
+        exit()
 
 
 def logs_handler(logs):
