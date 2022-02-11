@@ -22,7 +22,7 @@ def logs_handler(logs):
 
 
 def check_differences(first_element, second_element):
-    return set(first_element.items()) ^ set(second_element.items())
+    return dict(set(first_element.items()) ^ set(second_element.items()))
 
 
 if __name__ == '__main__':
