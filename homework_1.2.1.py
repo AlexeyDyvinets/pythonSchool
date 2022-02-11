@@ -19,11 +19,11 @@ def logs_finder(s_text, pattern):
 def logs_handler(logs):
     # там где код повторяеться 2 раза выглядит не оч, напиши цикл тогда уже
     log1 = logs[0].strip()
-    s1 = log1[log1.find('eid: ') + len('eid: '):].split(';')
+    log1_sep = log1[log1.find('eid: ') + len('eid: '):].split(';')
     log2 = logs[1].strip()
-    s2 = log2[log2.find('eid: ') + len('eid: '):].split(';')
-    log1 = {x.split('.')[0]: x.split('.')[1] for x in s1}
-    log2 = {x.split('.')[0]: x.split('.')[1] for x in s2}
+    log2_sep = log2[log2.find('eid: ') + len('eid: '):].split(';')
+    log1 = {x.split('.')[0]: x.split('.')[1] for x in log1_sep}
+    log2 = {x.split('.')[0]: x.split('.')[1] for x in log2_sep}
     set1 = set(log1.items())
     set2 = set(log2.items())
     return set1 ^ set2
