@@ -1,0 +1,29 @@
+import pytz
+import datetime
+
+
+def what_time_is_it(country1, country2):
+    country_times = []
+    country1_tz = [x for x in pytz.all_timezones if country1 in x]
+    country2_tz = [x for x in pytz.all_timezones if country2 in x]
+    ct1_tz = ''.join(country1_tz)
+    ct2_tz = ''.join(country2_tz)
+    country1_time = pytz.timezone(ct1_tz).fromutc(datetime.datetime.utcnow()).strftime('%Y/%m/%d %H:%M')
+    country2_time = pytz.timezone(ct2_tz).fromutc(datetime.datetime.utcnow()).strftime('%Y/%m/%d %H:%M')
+    country_times.append(country1_time)
+    country_times.append(country2_time)
+    print(f'Time in {country1} is: {country1_time} \nTime in {country2} is: {country2_time} ')
+    return country_times
+
+
+def time_differencer(country_times):
+    time1 = datetime.datetime.strptime(country_times[0], '%Y/%m/%d %H:%M')
+    time2 = datetime.datetime.strptime(country_times[1], '%Y/%m/%d %H:%M')
+    difference = time1 - time2
+    print(f'Difference between time is: {difference}')
+    return difference
+
+
+timer = what_time_is_it('Kiev', 'Berlin')
+time_differencer(timer)
+
