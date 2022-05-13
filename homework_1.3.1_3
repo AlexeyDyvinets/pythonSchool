@@ -22,8 +22,9 @@ def what_zodiac(birthday_date):
     znak = [x for x in zodiaks if birthday_date <= x[1]]
     print(znak[0][0])
     return znak[0][0]
+    
 
-
-bdate = birthday(14, 9, 1997)
-how_old(bdate)
-what_zodiac(bdate)
+if __name__ == '__main__':
+    bdate = birthday(14, 9, 1997)
+    how_old(bdate)
+    what_zodiac(bdate)
