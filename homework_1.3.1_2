@@ -23,7 +23,7 @@ def time_differencer(country_times):
     print(f'Difference between time is: {difference}')
     return difference
 
-
-timer = what_time_is_it('Kiev', 'Berlin')
-time_differencer(timer)
+if __name__ == '__main__':
+    timer = what_time_is_it('Kiev', 'Berlin')
+    time_differencer(timer)
 
