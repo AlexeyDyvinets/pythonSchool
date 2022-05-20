@@ -1,0 +1,30 @@
+import datetime
+
+
+def birthday(day, month, year):
+    birthday_date = datetime.date(year, month, day)
+    return birthday_date
+
+
+def how_old(birthday_date):
+    age = (datetime.date.today() - birthday_date)/365
+    print(f'{age.days} years')
+    return age.days
+
+
+def what_zodiac(birthday_date):
+    zodiaks = [('Овен', datetime.date(birthday_date.year, 4, 20)), ('Телец', datetime.date(birthday_date.year, 5, 21)),
+               ('Близнецы', datetime.date(birthday_date.year, 6, 21)), ('Рак', datetime.date(birthday_date.year, 7, 22)),
+               ('Лев', datetime.date(birthday_date.year, 8, 21)), ('Дева', datetime.date(birthday_date.year, 9, 23)),
+               ('Весы', datetime.date(birthday_date.year, 10, 23)), ('Скорпион', datetime.date(birthday_date.year, 11, 22)),
+               ('Стрелец', datetime.date(birthday_date.year, 12, 22)), ('Козерог', datetime.date(birthday_date.year, 1, 20)),
+               ('Водолей', datetime.date(birthday_date.year, 2, 19)), ('Рыбы', datetime.date(birthday_date.year, 3, 20))]
+    znak = [x for x in zodiaks if birthday_date <= x[1]]
+    print(znak[0][0])
+    return znak[0][0]
+    
+
+if __name__ == '__main__':
+    bdate = birthday(14, 9, 1997)
+    how_old(bdate)
+    what_zodiac(bdate)

@@ -1,0 +1,16 @@
+import datetime
+import calendar
+
+def when_is_friday():
+    count = 0
+    date = datetime.datetime(2022, 5, 13)
+    while count < 10:
+        days_in_month = calendar.monthrange(date.year, date.month)[1]
+        date += datetime.timedelta(days=days_in_month)
+        if date.isoweekday() == datetime.datetime.now().isoweekday():
+            count += 1
+            print(date.date())
+
+
+if __name__ == '__main__':
+    when_is_friday()
